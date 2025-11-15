@@ -1,0 +1,84 @@
+name: supabase-selfhosted-mcp
+
+services:
+  # Workspace for development
+  workspace:
+    container_name: sbsh-mcp-workspace
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: development
+    volumes:
+      # Source code: bind mount with :cached for macOS optimization
+      - .:/app:cached
+      # Dependencies: named volumes (Docker-First, NO Mac pollution)
+      - pnpm_store:/pnpm-store
+      - pnpm_cache:/pnpm/.cache
+      - node_modules:/app/node_modules
+      - dist_build:/app/dist
+    working_dir: /app
+    environment:
+      NODE_ENV: development
+      # pnpm config (matching .npmrc)
+      PNPM_HOME: /pnpm
+      PNPM_STORE_DIR: /pnpm-store
+    # Match host UID/GID to avoid permission issues
+    # TODO: Re-enable after investigating volume permission setup
+    # user: "${UID:-1000}:${GID:-1000}"
+    command: sleep infinity
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+
+  # MCP Server (production mode)
+  mcp-server:
+    container_name: sbsh-mcp-server
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: development
+    volumes:
+      # Source code
+      - .:/app:cached
+      # Dependencies: shared named volumes
+      - pnpm_store:/pnpm-store
+      - pnpm_cache:/pnpm/.cache
+      - node_modules:/app/node_modules
+      - dist_build:/app/dist
+    working_dir: /app
+    ports:
+      - "${PORT:-3100}:${PORT:-3100}"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      # pnpm config
+      PNPM_HOME: /pnpm
+      PNPM_STORE_DIR: /pnpm-store
+    # TODO: Re-enable after investigating volume permission setup
+    # user: "${UID:-1000}:${GID:-1000}"
+    command: sh -c "pnpm install --prefer-offline && pnpm build && pnpm start"
+    depends_on:
+      - workspace
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+    # Health check
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget --quiet --tries=1 --spider http://localhost:${PORT:-3100}/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  pnpm_store:
+  pnpm_cache:
+  node_modules:
+  dist_build:
+
+networks:
+  default:
+    name: sbsh-mcp_default

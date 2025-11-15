@@ -1,0 +1,26 @@
+# Development Dockerfile for Supabase Self-hosted MCP Server
+FROM node:20-alpine AS base
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
+
+# pnpm environment variables
+ENV PNPM_HOME=/pnpm
+ENV PNPM_STORE_DIR=/pnpm-store
+ENV PATH="$PNPM_HOME:$PATH"
+
+# Fix corepack cache permission issues
+ENV COREPACK_HOME=/pnpm/.cache/corepack
+ENV XDG_CACHE_HOME=/pnpm/.cache
+
+# Create cache directories with proper permissions
+RUN mkdir -p /pnpm/.cache/corepack && chmod -R 777 /pnpm
+
+WORKDIR /app
+
+# Development stage
+FROM base AS development
+
+# Install dependencies at runtime (not build time)
+# This ensures proper volume mounting
+CMD ["sh", "-c", "mkdir -p /app/node_modules && chmod 777 /app/node_modules && pnpm install --prefer-offline && pnpm build && pnpm start"]

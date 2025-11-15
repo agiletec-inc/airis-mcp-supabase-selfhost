@@ -2,6 +2,51 @@
 
 MCP (Model Context Protocol) server for self-hosted Supabase with RLS-aware PostgreSQL + PostgREST layers.
 
+---
+
+## 🌟 Part of the AIRIS Ecosystem
+
+This MCP server is designed to work with the **AIRIS Suite** - accessible via **airis-mcp-gateway** for token-efficient integration.
+
+### The AIRIS Suite
+
+| Component | Purpose | For Who |
+|-----------|---------|---------|
+| **[airis-agent](https://github.com/agiletec-inc/airis-agent)** | 🧠 Intelligence layer for all editors (confidence checks, deep research, self-review) | All developers using Claude Code, Cursor, Windsurf, Codex, Gemini CLI |
+| **[airis-mcp-gateway](https://github.com/agiletec-inc/airis-mcp-gateway)** | 🚪 Unified MCP proxy with 90% token reduction via lazy loading | Claude Code users who want faster startup |
+| **[mindbase](https://github.com/kazukinakai/mindbase)** | 💾 Local cross-session memory with semantic search | Developers who want persistent conversation history |
+| **[airis-workspace](https://github.com/agiletec-inc/airis-workspace)** | 🏗️ Docker-first monorepo manager | Teams building monorepos |
+| **[airiscode](https://github.com/agiletec-inc/airiscode)** | 🖥️ Terminal-first autonomous coding agent | CLI-first developers |
+
+### MCP Servers (Included via Gateway)
+
+- **airis-mcp-supabase-selfhost** (this repo) - Self-hosted Supabase MCP with RLS support
+- **mindbase** - Memory search & storage tools (`mindbase_search`, `mindbase_store`)
+
+### Quick Install: Complete AIRIS Suite
+
+```bash
+# Option 1: Install airis-agent plugin (recommended for Claude Code users)
+/plugin marketplace add agiletec-inc/airis-agent
+/plugin install airis-agent
+
+# Option 2: Clone all AIRIS repositories at once
+uv run airis-agent install-suite --profile full  # includes supabase MCP
+
+# Option 3: Just use this MCP server standalone
+git clone https://github.com/agiletec-inc/airis-mcp-supabase-selfhost.git
+cd airis-mcp-supabase-selfhost && pnpm install
+```
+
+**What you get with the full suite:**
+- ✅ Confidence-gated workflows (prevents wrong-direction coding)
+- ✅ Deep research with evidence synthesis
+- ✅ 94% token reduction via repository indexing
+- ✅ Cross-session memory across all editors
+- ✅ Self-review and post-implementation validation
+
+---
+
 ## ✨ Features
 
 - **2-Layer Backend**: PostgREST (RLS-respected) + Direct PostgreSQL (schema introspection & diagnostics)

@@ -260,16 +260,16 @@ This server is designed to work with dynamic MCP gateway patterns:
 
 ```typescript
 // Load only when Supabase tools are needed
-await gateway.loadServer('supabase-selfhosted', {
+await gateway.loadServer('airis-mcp-supabase-selfhost', {
   url: 'http://localhost:3100/mcp',
   features: 'database,docs'
 })
 
 // Use tools
-await gateway.call('supabase-selfhosted', 'sbsh_introspect_schema', {})
+await gateway.call('airis-mcp-supabase-selfhost', 'sbsh_introspect_schema', {})
 
 // Unload after use
-await gateway.unloadServer('supabase-selfhosted')
+await gateway.unloadServer('airis-mcp-supabase-selfhost')
 ```
 
 ### With Claude Desktop
@@ -279,7 +279,7 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "supabase-selfhosted": {
+    "airis-mcp-supabase-selfhost": {
       "command": "node",
       "args": ["/path/to/dist/server.js"],
       "env": {

@@ -220,7 +220,7 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "supabase-selfhosted": {
+    "airis-mcp-supabase-selfhost": {
       "command": "node",
       "args": ["/path/to/dist/server.js"],
       "env": {
@@ -239,13 +239,13 @@ Add to `claude_desktop_config.json`:
 
 ```typescript
 // Load only when needed
-await gateway.loadServer('supabase-selfhosted', {
+await gateway.loadServer('airis-mcp-supabase-selfhost', {
   url: 'http://localhost:3100/mcp',
   features: 'database,docs'
 })
 
 // Unload after use
-await gateway.unloadServer('supabase-selfhosted')
+await gateway.unloadServer('airis-mcp-supabase-selfhost')
 ```
 
 ## Important Notes

@@ -1,9 +1,9 @@
-name: supabase-selfhosted-mcp
+name: airis-mcp-supabase-selfhost
 
 services:
   # Workspace for development
   workspace:
-    container_name: sbsh-mcp-workspace
+    container_name: airis-mcp-supabase-selfhost-workspace
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -33,7 +33,7 @@ services:
 
   # MCP Server (production mode)
   mcp-server:
-    container_name: sbsh-mcp-server
+    container_name: airis-mcp-supabase-selfhost-server
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -81,4 +81,4 @@ volumes:
 
 networks:
   default:
-    name: sbsh-mcp_default
+    name: airis-mcp-supabase-selfhost_default

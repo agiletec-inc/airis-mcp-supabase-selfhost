@@ -23,17 +23,26 @@ This MCP server is designed to work with the **AIRIS Suite** - accessible via **
 - **airis-mcp-supabase-selfhost** (this repo) - Self-hosted Supabase MCP with RLS support
 - **mindbase** - Memory search & storage tools (`mindbase_search`, `mindbase_store`)
 
-### Quick Install: Complete AIRIS Suite
+### Recommended: Install via AIRIS MCP Gateway
+
+This MCP server comes **pre-configured** with AIRIS MCP Gateway. No additional setup required.
 
 ```bash
-# Option 1: Install airis-agent plugin (recommended for Claude Code users)
-/plugin marketplace add agiletec-inc/airis-agent
-/plugin install airis-agent
+# Install the Gateway (includes this server)
+brew install agiletec-inc/tap/airis-mcp-gateway
 
-# Option 2: Clone all AIRIS repositories at once
-uv run airis-agent install-suite --profile full  # includes supabase MCP
+# Start the gateway
+airis-mcp-gateway up
 
-# Option 3: Just use this MCP server standalone
+# Add to Claude Code
+claude mcp add --transport http airis-mcp-gateway http://api.gateway.localhost:9400/api/v1/mcp
+```
+
+### Alternative: Standalone Installation
+
+If you need to run this server independently:
+
+```bash
 git clone https://github.com/agiletec-inc/airis-mcp-supabase-selfhost.git
 cd airis-mcp-supabase-selfhost && pnpm install
 ```

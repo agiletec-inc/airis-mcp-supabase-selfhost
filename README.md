@@ -348,12 +348,59 @@ Add to `claude_desktop_config.json`:
 }
 ```
 
+---
+
+## 🔗 Related Projects
+
+Explore other tools in the AIRIS ecosystem:
+
+- **[airis-mcp-gateway](https://github.com/agiletec-inc/airis-mcp-gateway)** - Unified MCP hub with 90% token reduction
+- **[airis-agent](https://github.com/agiletec-inc/airis-agent)** - Intelligence layer for AI coding
+- **[mindbase](https://github.com/agiletec-inc/mindbase)** - Local cross-session memory with semantic search
+- **[airis-workspace](https://github.com/agiletec-inc/airis-workspace)** - Docker-first monorepo manager
+- **[cmd-ime](https://github.com/agiletec-inc/cmd-ime)** - macOS IME switcher
+- **[neural](https://github.com/agiletec-inc/neural)** - Local LLM translation tool
+- **[airiscode](https://github.com/agiletec-inc/airiscode)** - Terminal-first autonomous coding agent
+
+---
+
+## 💖 Support This Project
+
+If you find this project helpful, consider supporting its development:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/kazukinakai)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-sponsor-pink?style=for-the-badge&logo=github)](https://github.com/sponsors/kazukinakai)
+
+Your support helps maintain and improve all AIRIS projects!
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
 ## 📝 License
 
 MIT
+
+---
 
 ## 🙏 Acknowledgments
 
 - Inspired by [Supabase official MCP](https://supabase.com/docs/guides/ai/mcp)
 - Built on [Model Context Protocol](https://modelcontextprotocol.io/)
 - PostgreSQL introspection patterns from community MCP servers
+
+---
+
+**Built with ❤️ by the [Agiletec](https://github.com/agiletec-inc) team**
+
+**[Agiletec Inc.](https://github.com/agiletec-inc)** | **[Documentation](docs/)** | **[Issues](https://github.com/agiletec-inc/airis-mcp-supabase-selfhost/issues)** | **[Discussions](https://github.com/agiletec-inc/airis-mcp-supabase-selfhost/discussions)**
